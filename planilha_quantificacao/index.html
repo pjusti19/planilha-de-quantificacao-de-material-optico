@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Planilha de Quantificação</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="icon" href="imgs/icone.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="imgs/icone_branco.png" alt="Ícone">
+        <h1>Quantificação de material óptico</h1>
+    </header>
+
+    <main>
+        <article id="inputs">
+            <h2>Insira os dados de entrada para cálculo da Planilha Resultado</h2>
+            <div class="input-group">
+                <label for="numero_pavimentos">Número de pavimentos da edificação:</label>
+                <input type="number" id="numero_pavimentos" name="numero_pavimentos">
+            </div>
+            <div class="input-group">
+                <label for="pares_fibras_disponiveis">Número de pares de fibras disponíveis:</label>
+                <input type="number" id="pares_fibras_disponiveis" name="pares_fibras_disponiveis">
+            </div>
+            <div class="input-group">
+                <label for="medida_basica">Medida básica p/ cálculo dos lances do backbone:</label>
+                <input type="text" id="medida_basica" name="medida_basica">
+            </div>
+            <div class="input-group">
+                <label for="caracteristica">Característica da fibra óptica:</label>
+                <input type="text" id="caracteristica" name="caracteristica">
+            </div>
+            <div class="input-group">
+                <label for="backbone_andar">Quantidade de backbones p/ andar:</label>
+                <input type="number" id="backbone_andar" name="backbone_andar">
+            </div>
+            <div class="input-group">
+                <label for="backbone_primario">Há backbone primário?</label>
+                <input type="checkbox" id="backbone_primario" name="backbone_primario">
+            </div>
+            <div class="input-group">
+                <label for="backbone_secundario">Há backbone secundário?</label>
+                <input type="checkbox" id="backbone_secundario" name="backbone_secundario">
+            </div>
+            <input type="submit" value="Calcular" name="Calcular">
+        </article>
+    </main>
+
+    <footer>
+        <ul>
+            <li>Devs:</li>
+            <li><a href="https://github.com/pjusti19">pjusti19</a></li>
+            <li><a href="https://github.com/Viegas13">viegas13</a></li>
+            <li><a href="https://github.com/sscarlate3">sscarlate3</a></li>
+        </ul>
+    </footer>
+</body>
+
+</html>
