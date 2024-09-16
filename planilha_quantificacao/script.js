@@ -18,6 +18,8 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
     let fibraOpticaMetros = 0;
 
+    let aux;
+
     // Todo projeto começara com 2 dios, um externo, que recebe o cabo de fora e o interno que liga os andares. 
     let quantidadeDio = 2;
 
@@ -63,7 +65,8 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
         for (let i = 1; i <= numeroPavimentos; i++) {
 
-            fibraOpticaMetros += (i + 1) * medidaBasica + medidaBasica;
+            aux = (i + 1) * medidaBasica + medidaBasica;
+            fibraOpticaMetros += aux;
         }
 
         fibraOpticaMetros = fibraOpticaMetros * 1.2;
@@ -93,7 +96,8 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
         for (let i = 1; i <= numeroPavimentos; i++) {
 
-            fibraOpticaMetros += (i + 1) * medidaBasica + medidaBasica;
+            aux = (i + 1) * medidaBasica + medidaBasica;
+            fibraOpticaMetros += aux;
         }
 
         fibraOpticaMetros = fibraOpticaMetros * 1.2;
@@ -142,7 +146,70 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
     } else if (backbonePrimario == 'Sim' && backboneSecundario == 'Sim') {
 
+        let backbonesTotal = backboneAndar * (numeroPavimentos - 1) * 2;
+        let qntdFibrasTot = qntdFibras * backbonesTotal / 2;
+        quantidadeDio += backbonesTotal;
 
+        // O i varia de 16 em 16 porque irei considerar um dio de 24 portas em que deixarei 8 livres para ligações com outros dios
+        // Por exemplo, o dio interno precisa estar ligado ao externo -> se chega 4 fibras no externo, precisa de 2 portas para ligar os dios com cordão optico duplo
+        for (let i = 16; continuar; i += 16) {
+
+            if (qntdFibras * (backboneAndar / 2) <= i)
+                continuar = false;
+
+            quantidadeDio++;
+        }
+
+        for (let i = 1; i <= numeroPavimentos; i++) {
+
+            aux = ((i + 1) * medidaBasica + medidaBasica) * backboneAndar;
+            fibraOpticaMetros += aux;
+        }
+
+        fibraOpticaMetros = fibraOpticaMetros * 1.2;
+
+
+
+        if (especificacao == 'multimodo') {
+            qntdAcopladorOptMM = qntdFibrasTot / 2 + (qntdFibras / 2 * backbonesTotal / 2);
+            qntdCordaoOptMMInt = qntdFibrasTot / 2 + qntdFibrasPredio / 2 + (qntdFibras / 2 * backbonesTotal / 2) + qntdFibras / 2;;
+            qntdPigTailMMSimples = qntdFibrasTot;
+            qntdPigTailMMDuplo = qntdFibrasTot / 2;
+        }
+        else if (especificacao == 'monomodo') {
+            qntdAcopladorOptSM = qntdFibrasTot / 2 + (qntdFibras / 2 * backbonesTotal / 2);
+            qntdCordaoOptSMInt = qntdFibrasTot / 2 + qntdFibrasPredio / 2 + (qntdFibras / 2 * backbonesTotal / 2) + qntdFibras / 2;;
+            qntdPigTailSMSimples = qntdFibrasTot;
+            qntdPigTailSMDuplo = qntdFibrasTot / 2;
+        }
+        if (tipoFibraPredio == 'multimodo') {
+            qntdAcopladorOptMM += qntdFibrasPredio / 2;
+            qntdPigTailMMSimplesExt = qntdFibrasPredio;
+            qntdCordaoOpticoMMExt = qntdFibrasPredio / 2;
+
+        } else {
+            qntdAcopladorOptSM += qntdFibrasPredio / 2;
+            qntdPigTailSMSimplesExt = qntdFibrasPredio;
+            qntdCordaoOpticoSMExt = qntdFibrasPredio / 2;
+        }
+
+        bandejaEmenda += (qntdFibrasPredio + qntdFibrasTot);
+        bandejaEmenda /= 12;
+        terminadorOpt8fibras = qntdFibras * (numeroPavimentos - 1) / 8;
+        terminadorOpt8fibras = Math.ceil(terminadorOpt8fibras);
+        qntdAcopladorOptSM = Math.ceil(qntdAcopladorOptSM);
+        qntdCordaoOpticoSMExt = Math.ceil(qntdCordaoOpticoSMExt);
+        qntdAcopladorOptMM = Math.ceil(qntdAcopladorOptMM);
+        qntdAcopladorOptMM = Math.ceil(qntdAcopladorOptMM);
+        fibraOpticaMetros = Math.ceil(fibraOpticaMetros);
+        qntdAcopladorOptSM == Math.ceil(qntdAcopladorOptSM);
+        qntdCordaoOptSMInt = Math.ceil(qntdCordaoOptSMInt);
+        qntdPigTailSMSimples = Math.ceil(qntdPigTailSMSimples);
+        qntdPigTailSMDuplo = Math.ceil(qntdPigTailSMDuplo);
+        qntdAcopladorOptMM == Math.ceil(qntdAcopladorOptMM);
+        qntdCordaoOptMMInt = Math.ceil(qntdCordaoOptMMInt);
+        qntdPigTailMMSimples = Math.ceil(qntdPigTailMMSimples);
+        qntdPigTailMMDuplo = Math.ceil(qntdPigTailMMDuplo);
     }
 
     // Math.ceil() -> usar para números quebrados
