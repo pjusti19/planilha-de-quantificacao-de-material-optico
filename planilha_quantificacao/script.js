@@ -63,7 +63,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
         // 1 switch de sobra caso o número de ligações ultrapasse o número de portas do switch principal
         let nmrSwitchs = numeroPavimentos + 1;
 
-        for (let i = 1; i <= numeroPavimentos; i++) {
+        for (let i = 1; i < numeroPavimentos; i++) {
 
             aux = (i + 1) * medidaBasica + medidaBasica;
             fibraOpticaMetros += aux;
@@ -79,22 +79,29 @@ document.getElementById('Calculo').addEventListener('click', function () {
             sfpSM = qntdFibras * (numeroPavimentos - 1) * 2;
             qntdAcopladorOptSM = sfpSM;
         }
+        if (tipoFibraPredio == 'multimodo') {
+            sfpMM = qntdFibrasPredio;
+            qntdAcopladorOptMM = sfpMM;
+        } else {
+            sfpSM = qntdFibrasPredio;
+            qntdAcopladorOptSM = sfpSM;
+        }
 
     } else if (backbonePrimario == 'Sim' && backboneSecundario == 'Não') {
-
-
 
         // O i varia de 16 em 16 porque irei considerar um dio de 24 portas em que deixarei 8 livres para ligações com outros dios
         // Por exemplo, o dio interno precisa estar ligado ao externo -> se chega 4 fibras no externo, precisa de 2 portas para ligar os dios com cordão optico duplo
         for (let i = 16; continuar; i += 16) {
 
-            if (qntdFibras * (numeroPavimentos - 1) <= i)
+            if (qntdFibras * (numeroPavimentos - 1) <= i) {
                 continuar = false;
-
+                break;
+            }
             quantidadeDio++;
+
         }
 
-        for (let i = 1; i <= numeroPavimentos; i++) {
+        for (let i = 1; i < numeroPavimentos; i++) {
 
             aux = (i + 1) * medidaBasica + medidaBasica;
             fibraOpticaMetros += aux;
@@ -104,13 +111,14 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
         if (especificacao == 'multimodo') {
             qntdAcopladorOptMM = (qntdFibras * (numeroPavimentos - 1)) / 2;
-            qntdCordaoOptMMInt = (qntdFibras * (numeroPavimentos - 1)) / 2; + qntdFibrasPredio / 2;
+            qntdCordaoOptMMInt = (qntdFibras * (numeroPavimentos - 1)) / 2 + qntdFibrasPredio / 2;
             qntdPigTailMMSimples = qntdFibras * (numeroPavimentos - 1);
             qntdPigTailMMDuplo = qntdFibras * (numeroPavimentos - 1) / 2;
         }
+
         else if (especificacao == 'monomodo') {
             qntdAcopladorOptSM == (qntdFibras * (numeroPavimentos - 1)) / 2;
-            qntdCordaoOptSMInt = (qntdFibras * (numeroPavimentos - 1)) / 2; + qntdFibrasPredio / 2;
+            qntdCordaoOptSMInt = (qntdFibras * (numeroPavimentos - 1)) / 2 + qntdFibrasPredio / 2;
             qntdPigTailSMSimples = qntdFibras * (numeroPavimentos - 1);
             qntdPigTailSMDuplo = qntdFibras * (numeroPavimentos - 1) / 2;
         }
@@ -126,8 +134,9 @@ document.getElementById('Calculo').addEventListener('click', function () {
         }
 
 
-        bandejaEmenda += (qntdFibrasPredio + qntdFibras);
+        bandejaEmenda += (qntdFibrasPredio + qntdFibras * (numeroPavimentos - 1));
         bandejaEmenda /= 12;
+        bandejaEmenda = Math.ceil(bandejaEmenda);
         terminadorOpt8fibras = qntdFibras * (numeroPavimentos - 1) / 8;
         terminadorOpt8fibras = Math.ceil(terminadorOpt8fibras);
         qntdAcopladorOptSM = Math.ceil(qntdAcopladorOptSM);
@@ -146,9 +155,9 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
     } else if (backbonePrimario == 'Sim' && backboneSecundario == 'Sim') {
 
-        let backbonesTotal = backboneAndar * (numeroPavimentos - 1) * 2;
-        let qntdFibrasTot = qntdFibras * backbonesTotal / 2;
-        quantidadeDio += backbonesTotal;
+        let backbonesTotal = backboneAndar * (numeroPavimentos - 1);
+        let qntdFibrasTot = qntdFibras * backbonesTotal;
+        quantidadeDio += backbonesTotal * 2;
 
         // O i varia de 16 em 16 porque irei considerar um dio de 24 portas em que deixarei 8 livres para ligações com outros dios
         // Por exemplo, o dio interno precisa estar ligado ao externo -> se chega 4 fibras no externo, precisa de 2 portas para ligar os dios com cordão optico duplo
@@ -160,7 +169,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
             quantidadeDio++;
         }
 
-        for (let i = 1; i <= numeroPavimentos; i++) {
+        for (let i = 1; i < numeroPavimentos; i++) {
 
             aux = ((i + 1) * medidaBasica + medidaBasica) * backboneAndar;
             fibraOpticaMetros += aux;
@@ -168,17 +177,15 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
         fibraOpticaMetros = fibraOpticaMetros * 1.2;
 
-
-
         if (especificacao == 'multimodo') {
-            qntdAcopladorOptMM = qntdFibrasTot / 2 + (qntdFibras / 2 * backbonesTotal / 2);
-            qntdCordaoOptMMInt = qntdFibrasTot / 2 + qntdFibrasPredio / 2 + (qntdFibras / 2 * backbonesTotal / 2) + qntdFibras / 2;;
+            qntdAcopladorOptMM = qntdFibrasTot / 2 + (qntdFibras / 2 * backbonesTotal);
+            qntdCordaoOptMMInt = qntdFibrasTot / 2 + qntdFibrasPredio / 2 + (qntdFibras / 2 * backbonesTotal) + qntdFibras / 2;
             qntdPigTailMMSimples = qntdFibrasTot;
             qntdPigTailMMDuplo = qntdFibrasTot / 2;
         }
         else if (especificacao == 'monomodo') {
-            qntdAcopladorOptSM = qntdFibrasTot / 2 + (qntdFibras / 2 * backbonesTotal / 2);
-            qntdCordaoOptSMInt = qntdFibrasTot / 2 + qntdFibrasPredio / 2 + (qntdFibras / 2 * backbonesTotal / 2) + qntdFibras / 2;;
+            qntdAcopladorOptSM = qntdFibrasTot / 2 + (qntdFibras / 2 * backbonesTotal);
+            qntdCordaoOptSMInt = qntdFibrasTot / 2 + qntdFibrasPredio / 2 + (qntdFibras / 2 * backbonesTotal) + qntdFibras / 2;
             qntdPigTailSMSimples = qntdFibrasTot;
             qntdPigTailSMDuplo = qntdFibrasTot / 2;
         }
@@ -186,7 +193,6 @@ document.getElementById('Calculo').addEventListener('click', function () {
             qntdAcopladorOptMM += qntdFibrasPredio / 2;
             qntdPigTailMMSimplesExt = qntdFibrasPredio;
             qntdCordaoOpticoMMExt = qntdFibrasPredio / 2;
-
         } else {
             qntdAcopladorOptSM += qntdFibrasPredio / 2;
             qntdPigTailSMSimplesExt = qntdFibrasPredio;
@@ -195,6 +201,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
         bandejaEmenda += (qntdFibrasPredio + qntdFibrasTot);
         bandejaEmenda /= 12;
+        bandejaEmenda = Math.ceil(bandejaEmenda);
         terminadorOpt8fibras = qntdFibras * (numeroPavimentos - 1) / 8;
         terminadorOpt8fibras = Math.ceil(terminadorOpt8fibras);
         qntdAcopladorOptSM = Math.ceil(qntdAcopladorOptSM);
