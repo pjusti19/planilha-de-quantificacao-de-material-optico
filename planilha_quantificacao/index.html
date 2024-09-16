@@ -33,8 +33,28 @@
                 <input type="text" id="medida_basica" name="medida_basica">
             </div>
             <div class="input-group">
+                <label for="especificacao">Especificação da fibra:</label>
+                <select id="especificacao" name="especificacao">
+                    <option value="" disabled selected>Selecione </option>
+                    <option value="multimodo">Fibra Multimodo</option>
+                    <option value="monomodo">Fibra Monomodo</option>
+                </select>
+            </div>
+            <div class="input-group">
                 <label for="caracteristica">Característica da fibra óptica:</label>
                 <input type="text" id="caracteristica" name="caracteristica">
+            </div>
+            <div class="input-group"></div>
+                <label for="tipoFibraPredio">Tipo de fibra que chegará:</label>
+                <select id="tipoFibraPredio" name="tipoFibraPredio">
+                    <option value="" disabled selected>Selecione </option>
+                    <option value="multimodo">Fibra Multimodo</option>
+                    <option value="monomodo">Fibra Monomodo</option>
+                </select>
+            </div>
+            <div class="input-group"></div>
+                <label for="numeroFibras">Número de fibras que chegarão:</label>
+                <input type="number" id="numeroFibras" name="numeroFibras">
             </div>
             <div class="input-group">
                 <label for="backbone_andar">Quantidade de backbones p/ andar:</label>
