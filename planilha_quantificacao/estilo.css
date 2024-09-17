@@ -25,6 +25,9 @@ header h1 {
 
 main {
     flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #inputs {
@@ -39,6 +42,7 @@ main {
     max-width: 50%;
     box-shadow: 10px 10px rgba(155, 155, 155, 0.281);
 }
+
 
 .input-group {
     display: flex;
