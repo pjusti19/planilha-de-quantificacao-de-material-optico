@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
 </head>
 
 <body>
@@ -69,9 +71,13 @@
                 <input type="checkbox" id="backbone_secundario" name="backbone_secundario">
             </div>
             <input id="Calculo" type="submit" value="Calcular" name="Calcular">
-        </article>
-    </main>
+            <input id="ExportarExcel" type="submit" value="Exportar para o Excel"  name="ExportarExcel">
 
+        </article>
+        
+
+    </main>
+    <script src="script.js"></script>
     <footer>
         <ul>
             <li>Devs:</li>
@@ -80,7 +86,8 @@
             <li><a href="https://github.com/sscarlate3">sscarlate3</a></li>
         </ul>
     </footer>
-    <script src="script.js"></script>
+
+
 </body>
 
 </html>

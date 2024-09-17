@@ -8,50 +8,36 @@
     <link rel="icon" href="imgs/icone.png">
 </head>
 
-<body>
+<body onload="obterParametrosURL()">
     <header>
         <img src="imgs/icone_branco.png" alt="Ícone">
         <h1>Resultado da Quantificação de material óptico</h1>
     </header>
-
     <main>
-        <article id="resultados">
-            <h2>Resultados dos dados inseridos</h2>
-            <div class="result-group">
-                <label>Número de pavimentos da edificação:</label>
-                <span id="resultado_pavimentos"></span>
-            </div>
-            <div class="result-group">
-                <label>Número de pares de fibras disponíveis:</label>
-                <span id="resultado_fibras"></span>
-            </div>
-            <div class="result-group">
-                <label>Medida básica para cálculo dos lances do backbone:</label>
-                <span id="resultado_medida"></span>
-            </div>
-            <div class="result-group"></div>
-                <label>Especificação da fibra óptica:</label>
-                <span id="resultado_especificacao"></span>
-            </div>
-            <div class="result-group">
-                <label>Característica da fibra óptica:</label>
-                <span id="resultado_caracteristica"></span>
-            </div>
-            <div class="result-group">
-                <label>Quantidade de backbones por andar:</label>
-                <span id="resultado_backbone_andar"></span>
-            </div>
-            <div class="result-group">
-                <label>Há backbone primário?</label>
-                <span id="resultado_backbone_primario"></span>
-            </div>
-            <div class="result-group">
-                <label>Há backbone secundário?</label>
-                <span id="resultado_backbone_secundario"></span>
-            </div>
-        </article>
-    </main>
-
+    <h1>Resultados</h1>
+    <table border="52">
+        <tr><th>Número de Pavimentos</th><td id="numeroPavimentos"></td></tr>
+        <tr><th>Pares de Fibras</th><td id="paresFibras"></td></tr>
+        <tr><th>Medida Básica</th><td id="medidaBasica"></td></tr>
+        <tr><th>Característica</th><td id="caracteristica"></td></tr>
+        <tr><th>Backbone por Andar</th><td id="backboneAndar"></td></tr>
+        <tr><th>Backbone Primário</th><td id="backbonePrimario"></td></tr>
+        <tr><th>Backbone Secundário</th><td id="backboneSecundario"></td></tr>
+        <tr><th>Fibra Óptica (metros)</th><td id="fibraOpticaMetros"></td></tr>
+        <tr><th>Bandeja de Emenda</th><td id="bandejaEmenda"></td></tr>
+        <tr><th>Terminador Óptico 8 Fibras</th><td id="terminadorOpt8fibras"></td></tr>
+        <tr><th>Acoplador Óptico SM</th><td id="qntdAcopladorOptSM"></td></tr>
+        <tr><th>Cordão Óptico SM Externo</th><td id="qntdCordaoOpticoSMExt"></td></tr>
+        <tr><th>Acoplador Óptico MM</th><td id="qntdAcopladorOptMM"></td></tr>
+        <tr><th>Cordão Óptico MM Interno</th><td id="qntdCordaoOptMMInt"></td></tr>
+        <tr><th>PigTail SM Simples</th><td id="qntdPigTailSMSimples"></td></tr>
+        <tr><th>PigTail SM Duplo</th><td id="qntdPigTailSMDuplo"></td></tr>
+        <tr><th>PigTail MM Simples</th><td id="qntdPigTailMMSimples"></td></tr>
+        <tr><th>PigTail MM Duplo</th><td id="qntdPigTailMMDuplo"></td></tr>
+    </table>
+</main>
+    <script src="resultado.js" ></script>
+    
     <footer>
         <ul>
             <li>Devs:</li>
@@ -60,8 +46,6 @@
             <li><a href="https://github.com/sscarlate3">sscarlate3</a></li>
         </ul>
     </footer>
-
-    <script src="resultado.js" ></script>
 </body>
 
 </html>

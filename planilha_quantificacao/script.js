@@ -1,18 +1,19 @@
 // bom dia duda
 document.getElementById('Calculo').addEventListener('click', function () {
     // Pegando os valores do arquivo
-    const numeroPavimentos = document.getElementById('numero_pavimentos').value;
-    const paresFibras = document.getElementById('pares_fibras_disponiveis').value;
-    const medidaBasica = document.getElementById('medida_basica').value;
+    const numeroPavimentos = parseInt(document.getElementById('numero_pavimentos').value) || 0;
+    const paresFibras = parseInt(document.getElementById('pares_fibras_disponiveis').value) || 0;
+    const medidaBasica = parseFloat(document.getElementById('medida_basica').value) || 0;
     const caracteristica = document.getElementById('caracteristica').value;
-    const backboneAndar = document.getElementById('backbone_andar').value;
+    const backboneAndar = parseInt(document.getElementById('backbone_andar').value) || 0;
     const backbonePrimario = document.getElementById('backbone_primario').checked ? 'Sim' : 'Não';
     const backboneSecundario = document.getElementById('backbone_secundario').checked ? 'Sim' : 'Não';
-    const comboBox = document.getElementById('especificacao');
+    const comboBox = document.getElementById("especificacao");
     const especificacao = comboBox.options[comboBox.selectedIndex].text;
     const comboBox2 = document.getElementById('tipoFibraPredio');
     const tipoFibraPredio = comboBox2.options[comboBox.selectedIndex].text;
-    const qntdFibrasPredio = document.getElementById('numeroFibras');
+    const qntdFibrasPredio = parseInt(document.getElementById('numeroFibras').value) || 0;
+
 
     // Faz os calculos ai em baixo
 
@@ -117,7 +118,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
         }
 
         else if (especificacao == 'monomodo') {
-            qntdAcopladorOptSM == (qntdFibras * (numeroPavimentos - 1)) / 2;
+            qntdAcopladorOptSM = (qntdFibras * (numeroPavimentos - 1)) / 2;
             qntdCordaoOptSMInt = (qntdFibras * (numeroPavimentos - 1)) / 2 + qntdFibrasPredio / 2;
             qntdPigTailSMSimples = qntdFibras * (numeroPavimentos - 1);
             qntdPigTailSMDuplo = qntdFibras * (numeroPavimentos - 1) / 2;
@@ -142,13 +143,10 @@ document.getElementById('Calculo').addEventListener('click', function () {
         qntdAcopladorOptSM = Math.ceil(qntdAcopladorOptSM);
         qntdCordaoOpticoSMExt = Math.ceil(qntdCordaoOpticoSMExt);
         qntdAcopladorOptMM = Math.ceil(qntdAcopladorOptMM);
-        qntdAcopladorOptMM = Math.ceil(qntdAcopladorOptMM);
         fibraOpticaMetros = Math.ceil(fibraOpticaMetros);
-        qntdAcopladorOptSM == Math.ceil(qntdAcopladorOptSM);
         qntdCordaoOptSMInt = Math.ceil(qntdCordaoOptSMInt);
         qntdPigTailSMSimples = Math.ceil(qntdPigTailSMSimples);
         qntdPigTailSMDuplo = Math.ceil(qntdPigTailSMDuplo);
-        qntdAcopladorOptMM == Math.ceil(qntdAcopladorOptMM);
         qntdCordaoOptMMInt = Math.ceil(qntdCordaoOptMMInt);
         qntdPigTailMMSimples = Math.ceil(qntdPigTailMMSimples);
         qntdPigTailMMDuplo = Math.ceil(qntdPigTailMMDuplo);
@@ -207,33 +205,78 @@ document.getElementById('Calculo').addEventListener('click', function () {
         qntdAcopladorOptSM = Math.ceil(qntdAcopladorOptSM);
         qntdCordaoOpticoSMExt = Math.ceil(qntdCordaoOpticoSMExt);
         qntdAcopladorOptMM = Math.ceil(qntdAcopladorOptMM);
-        qntdAcopladorOptMM = Math.ceil(qntdAcopladorOptMM);
         fibraOpticaMetros = Math.ceil(fibraOpticaMetros);
-        qntdAcopladorOptSM == Math.ceil(qntdAcopladorOptSM);
         qntdCordaoOptSMInt = Math.ceil(qntdCordaoOptSMInt);
         qntdPigTailSMSimples = Math.ceil(qntdPigTailSMSimples);
         qntdPigTailSMDuplo = Math.ceil(qntdPigTailSMDuplo);
-        qntdAcopladorOptMM == Math.ceil(qntdAcopladorOptMM);
         qntdCordaoOptMMInt = Math.ceil(qntdCordaoOptMMInt);
         qntdPigTailMMSimples = Math.ceil(qntdPigTailMMSimples);
         qntdPigTailMMDuplo = Math.ceil(qntdPigTailMMDuplo);
     }
 
     // Math.ceil() -> usar para números quebrados
-
-    function exportarParaExcel() {
-        // Seleciona a tabela HTML
-        let tabela = document.getElementById('tabelaDados');
-        let planilha = XLSX.utils.table_to_sheet(tabela);
-
-        // Cria uma nova pasta de trabalho (workbook)
+    document.getElementById('ExportarExcel').addEventListener('click', function () {
+        // Dados de entrada
+        let dadosEntrada = [
+            { 'Parâmetro': 'Número de Pavimentos', 'Valor': numeroPavimentos },
+            { 'Parâmetro': 'Pares de Fibras Disponíveis', 'Valor': paresFibras },
+            { 'Parâmetro': 'Medida Básica', 'Valor': medidaBasica },
+            { 'Parâmetro': 'Característica', 'Valor': caracteristica },
+            { 'Parâmetro': 'Backbone por Andar', 'Valor': backboneAndar },
+            { 'Parâmetro': 'Backbone Primário', 'Valor': backbonePrimario },
+            { 'Parâmetro': 'Backbone Secundário', 'Valor': backboneSecundario },
+            { 'Parâmetro': 'Especificação', 'Valor': especificacao },
+            { 'Parâmetro': 'Tipo de Fibra no Prédio', 'Valor': tipoFibraPredio }
+        ];
+    
+        // Dados calculados
+        let dadosCalculados = [
+            { 'Parâmetro': 'Bandeja de Emenda', 'Valor': bandejaEmenda },
+            { 'Parâmetro': 'Terminador Óptico 8 Fibras', 'Valor': terminadorOpt8fibras },
+            { 'Parâmetro': 'Acoplador Óptico SM', 'Valor': qntdAcopladorOptSM },
+            { 'Parâmetro': 'Cordão Óptico SM Externo', 'Valor': qntdCordaoOpticoSMExt },
+            { 'Parâmetro': 'Acoplador Óptico MM', 'Valor': qntdAcopladorOptMM },
+            { 'Parâmetro': 'Fibra Óptica em Metros', 'Valor': fibraOpticaMetros },
+            { 'Parâmetro': 'Cordão Óptico SM Interno', 'Valor': qntdCordaoOptSMInt },
+            { 'Parâmetro': 'PigTail SM Simples', 'Valor': qntdPigTailSMSimples },
+            { 'Parâmetro': 'PigTail SM Duplo', 'Valor': qntdPigTailSMDuplo },
+            { 'Parâmetro': 'Cordão Óptico MM Interno', 'Valor': qntdCordaoOptMMInt },
+            { 'Parâmetro': 'PigTail MM Simples', 'Valor': qntdPigTailMMSimples },
+            { 'Parâmetro': 'PigTail MM Duplo', 'Valor': qntdPigTailMMDuplo }
+        ];
+    
+        // Criar uma nova pasta de trabalho (workbook)
         let novaPlanilha = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(novaPlanilha, planilha, 'Resultados');
-
-        // Exporta para arquivo Excel (.xlsx)
-        XLSX.writeFile(novaPlanilha, 'Planilha_Resultado.xlsx');
-    }
-
+    
+        // Adicionar os dados de entrada
+        let sheetEntrada = XLSX.utils.json_to_sheet(dadosEntrada);
+        XLSX.utils.book_append_sheet(novaPlanilha, sheetEntrada, 'Dados de Entrada');
+    
+        // Adicionar os dados calculados
+        let sheetCalculados = XLSX.utils.json_to_sheet(dadosCalculados);
+        XLSX.utils.book_append_sheet(novaPlanilha, sheetCalculados, 'Dados Calculados');
+    
+        // Exportar para arquivo Excel (.xlsx)
+        XLSX.writeFile(novaPlanilha, 'Projeto_Estrutura_Fibra_Optica.xlsx');
+    });
+    /*
+    console.log("fibraOpticaMetros:", fibraOpticaMetros);
+    console.log("bandejaEmenda:", bandejaEmenda);
+    console.log("terminadorOpt8fibras:", terminadorOpt8fibras);
+    console.log("qntdAcopladorOptSM:", qntdAcopladorOptSM);
+    console.log("qntdCordaoOpticoSMExt:", qntdCordaoOpticoSMExt);
+    console.log("qntdAcopladorOptMM:", qntdAcopladorOptMM);
+    console.log("qntdCordaoOptMMInt:", qntdCordaoOptMMInt);
+    console.log("qntdPigTailSMSimples:", qntdPigTailSMSimples);
+    console.log("qntdPigTailSMDuplo:", qntdPigTailSMDuplo);
+    console.log("qntdPigTailMMSimples:", qntdPigTailMMSimples);
+    console.log("qntdPigTailMMDuplo:", qntdPigTailMMDuplo);
     // redireciona os valores pra outra pagina
-    window.location.href = `resultado.html?numero_pavimentos=${numeroPavimentos}&pares_fibras=${paresFibras}&medida_basica=${medidaBasica}&especificacao=${especificacao}&caracteristica=${caracteristica}&backbone_andar=${backboneAndar}&backbone_primario=${backbonePrimario}&backbone_secundario=${backboneSecundario}`;
-});
+    */
+    window.location.href = `resultado.html?numero_pavimentos=${numeroPavimentos}&pares_fibras=${paresFibras}&medida_basica=${medidaBasica}
+    &especificacao=${especificacao}&caracteristica=${caracteristica}&backbone_andar=${backboneAndar}&backbone_primario=${backbonePrimario}
+    &backbone_secundario=${backboneSecundario}&fibraOpticaMetros=${fibraOpticaMetros}&bandejaEmenda=${bandejaEmenda}&terminadorOpt8fibras=${terminadorOpt8fibras}
+    &qntdAcopladorOptSM=${qntdAcopladorOptSM}&qntdCordaoOpticoSMExt=${qntdCordaoOpticoSMExt}&qntdAcopladorOptMM=${qntdAcopladorOptMM}&qntdCordaoOptMMInt=${qntdCordaoOptMMInt}
+    &qntdPigTailSMSimples=${qntdPigTailSMSimples}&qntdPigTailSMDuplo=${qntdPigTailSMDuplo}&qntdPigTailMMSimples=${qntdPigTailMMSimples}&qntdPigTailMMDuplo=${qntdPigTailMMDuplo}`;
+
+    });
