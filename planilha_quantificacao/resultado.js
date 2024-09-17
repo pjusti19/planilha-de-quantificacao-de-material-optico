@@ -10,6 +10,7 @@ function obterParametrosURL() {
     document.getElementById('backbonePrimario').textContent = urlParams.get('backbone_primario');
     document.getElementById('backboneSecundario').textContent = urlParams.get('backbone_secundario');
     document.getElementById('fibraOpticaMetros').textContent = urlParams.get('fibraOpticaMetros');
+    document.getElementById('quantidadeDio').textContent = urlParams.get('quantidadeDio');
     document.getElementById('bandejaEmenda').textContent = urlParams.get('bandejaEmenda');
     document.getElementById('terminadorOpt8fibras').textContent = urlParams.get('terminadorOpt8fibras');
     document.getElementById('qntdAcopladorOptSM').textContent = urlParams.get('qntdAcopladorOptSM');
@@ -20,4 +21,6 @@ function obterParametrosURL() {
     document.getElementById('qntdPigTailSMDuplo').textContent = urlParams.get('qntdPigTailSMDuplo');
     document.getElementById('qntdPigTailMMSimples').textContent = urlParams.get('qntdPigTailMMSimples');
     document.getElementById('qntdPigTailMMDuplo').textContent = urlParams.get('qntdPigTailMMDuplo');
+    document.getElementById('qntdCordaoOpticoMMExt').textContent = urlParams.get('qntdCordaoOpticoMMExt');
+    document.getElementById('qntdCordaoOptSMInt').textContent = urlParams.get('qntdCordaoOptSMInt');
 }

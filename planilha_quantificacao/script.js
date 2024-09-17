@@ -286,8 +286,10 @@ document.getElementById('Calculo').addEventListener('click', function () {
        
     window.location.href = `resultado.html?numero_pavimentos=${numeroPavimentos}&pares_fibras=${paresFibras}&medida_basica=${medidaBasica}
     &especificacao=${especificacao}&caracteristica=${caracteristica}&backbone_andar=${backboneAndar}&backbone_primario=${backbonePrimario}
-    &backbone_secundario=${backboneSecundario}&fibraOpticaMetros=${fibraOpticaMetros}&bandejaEmenda=${bandejaEmenda}&terminadorOpt8fibras=${terminadorOpt8fibras}
-    &qntdAcopladorOptSM=${qntdAcopladorOptSM}&qntdCordaoOpticoSMExt=${qntdCordaoOpticoSMExt}&qntdAcopladorOptMM=${qntdAcopladorOptMM}&qntdCordaoOptMMInt=${qntdCordaoOptMMInt}
+    &backbone_secundario=${backboneSecundario}&fibraOpticaMetros=${fibraOpticaMetros}&quantidadeDio=${quantidadeDio}&bandejaEmenda=${bandejaEmenda}
+    &terminadorOpt8fibras=${terminadorOpt8fibras}&qntdAcopladorOptSM=${qntdAcopladorOptSM}&qntdCordaoOpticoSMExt=${qntdCordaoOpticoSMExt}
+    &qntdCordaoOptSMInt=${qntdCordaoOptSMInt}&qntdCordaoOpticoMMExt=${qntdCordaoOpticoMMExt}
+    &qntdAcopladorOptMM=${qntdAcopladorOptMM}&qntdCordaoOptMMInt=${qntdCordaoOptMMInt}
     &qntdPigTailSMSimples=${qntdPigTailSMSimples}&qntdPigTailSMDuplo=${qntdPigTailSMDuplo}&qntdPigTailMMSimples=${qntdPigTailMMSimples}&qntdPigTailMMDuplo=${qntdPigTailMMDuplo}`;
 
     });
