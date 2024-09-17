@@ -225,6 +225,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
     // Math.ceil() -> usar para números quebrados
     document.getElementById('ExportarExcel').addEventListener('click', function () {
+        console.log(7);
         // Dados de entrada
         let dadosEntrada = [
             { 'Parâmetro': 'Número de Pavimentos', 'Valor': numeroPavimentos },
@@ -268,6 +269,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
         // Exportar para arquivo Excel (.xlsx)
         XLSX.writeFile(novaPlanilha, 'Projeto_Estrutura_Fibra_Optica.xlsx');
     });
+    
     console.log("TipoFibraPredio", tipoFibraPredio);
     console.log("fibraOpticaMetros:", fibraOpticaMetros);
     console.log("bandejaEmenda:", bandejaEmenda);
