@@ -11,8 +11,6 @@ document.getElementById('Calculo').addEventListener('click', function () {
     const backboneSecundario = document.getElementById('backbone_secundario').checked ? 'Sim' : 'Não';
     const comboBox = document.getElementById("especificacao");
     const especificacao = comboBox.options[comboBox.selectedIndex].text;
-    const comboBox2 = document.getElementById('tipoFibraPredio');
-    const tipoFibraPredio = comboBox2.options[comboBox2.selectedIndex].text;
     const qntdFibrasPredio = parseInt(document.getElementById('numeroFibras').value) || 0;
 
     // Faz os calculos ai em baixo
@@ -85,7 +83,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
         qntdPigTailMMSimples = Math.ceil(qntdPigTailMMSimples);
         qntdPigTailMMDuplo = Math.ceil(qntdPigTailMMDuplo);
 
-    } else if (backbonePrimario == 'Sim' && backboneSecundario == 'Sim') {
+    } else if (backboneSecundario == 'Sim') {
 
         quantidadeDio = (qntdPredios) * 2 * backboneAndar;
         
@@ -170,7 +168,6 @@ document.getElementById('Calculo').addEventListener('click', function () {
         XLSX.writeFile(novaPlanilha, 'Projeto_Estrutura_Fibra_Optica.xlsx');
     });
     
-    console.log("TipoFibraPredio", tipoFibraPredio);
     console.log("fibraOpticaMetros:", fibraOpticaMetros);
     console.log("bandejaEmenda:", bandejaEmenda);
     console.log("terminadorOpt8fibras:", terminadorOpt8fibras);

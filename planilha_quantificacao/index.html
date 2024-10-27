@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Planilha de Quantificação</title>
@@ -20,6 +18,19 @@
     </header>
 
     <main>
+
+        <article id="backbones">
+            <h2>Qual nível de backbone será adotado no projeto?</h2>
+            <div class="input-group">
+                <label for="backbone_primario">Apenas backbone primário</label>
+                <input type="checkbox" id="backbone_primario" name="backbone_primario">
+            </div>
+            <div class="input-group">
+                <label for="backbone_secundario">Backbone primário e secundário</label>
+                <input type="checkbox" id="backbone_secundario" name="backbone_secundario">
+            </div>
+        </article>
+
         <article id="inputs">
             <h2>Insira os dados de entrada para cálculo da Planilha Resultado</h2>
             <div class="input-group">
@@ -29,14 +40,6 @@
             <div class="input-group">
                 <label for="qntd_fibras_disponiveis">Número de fibras disponíveis:</label>
                 <input type="number" id="qntd_fibras_disponiveis" name="qntd_fibras_disponiveis">
-            </div>
-            <div class="input-group"></div>
-                <label for="qntd_predios">Número de prédios:</label>
-                <input type="number" id="qntd_predios" name="qntd_predios">
-            </div>
-            <div class="input-group"></div>
-                <label for="distancia">Distância média entre o prédio principal e o(s) prédio(s) secundário(s):</label>
-                <input type="number" id="distancia" name="distancia">
             </div>
             <div class="input-group">
                 <label for="medida_basica">Medida básica p/ cálculo dos lances do backbone:</label>
@@ -51,32 +54,30 @@
                 </select>
             </div>
             <div class="input-group">
-                <label for="tipoFibraPredio">Tipo de fibra que chegará:</label>
-                <select id="tipoFibraPredio" name="tipoFibraPredio">
-                    <option value="" disabled selected>Selecione </option>
-                    <option value="multimodo">multimodo</option>
-                    <option value="monomodo">monomodo</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="numeroFibras">Número de fibras que chegarão:</label>
-                <input type="number" id="numeroFibras" name="numeroFibras">
-            </div>
-            <div class="input-group">
                 <label for="backbone_andar">Quantidade de backbones p/ andar:</label>
                 <input type="number" id="backbone_andar" name="backbone_andar">
             </div>
-            <div class="input-group">
-                <label for="backbone_primario">Há backbone primário?</label>
-                <input type="checkbox" id="backbone_primario" name="backbone_primario">
-            </div>
-            <div class="input-group">
-                <label for="backbone_secundario">Há backbone secundário?</label>
-                <input type="checkbox" id="backbone_secundario" name="backbone_secundario">
-            </div>
-            <input id="Calculo" type="submit" value="Calcular" name="Calcular">
-            <!-- <input id="ExportarExcel" type="submit" value="Exportar para o Excel"  name="ExportarExcel"> --> 
 
+        </article>
+
+        <article id="inputs_secundarios">
+            <h2>Insira os dados de entrada para o backbone secundário</h2>
+            <div class="input-group"></div>
+            <label for="qntd_predios">Número de prédios:</label>
+            <input type="number" id="qntd_predios" name="qntd_predios">
+        </div>
+        <div class="input-group"></div>
+            <label for="distancia">Distância média entre o prédio principal e o(s) prédio(s) secundário(s):</label>
+            <input type="number" id="distancia" name="distancia">
+        </div>
+        <div class="input-group">
+            <label for="numeroFibras">Número de fibras que chegarão:</label>
+            <input type="number" id="numeroFibras" name="numeroFibras">
+        </div>
+        </article>
+        <article id="botao">
+        <input id="Calculo" type="submit" value="Calcular" name="Calcular">
+            <!-- <input id="ExportarExcel" type="submit" value="Exportar para o Excel"  name="ExportarExcel"> --> 
         </article>
     </main>
     <footer>
@@ -90,6 +91,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
     <script src="script.js"></script>
+    <script src="backbones.js"></script>
 
 </body>
 
