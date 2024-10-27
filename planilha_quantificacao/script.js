@@ -98,7 +98,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
         fibraOpticaMetros = fibraOpticaMetros * 1.2 * backboneAndar * qntdPredios;
         bandejaEmenda = (qntdFibras * (numeroPavimentos - 1) + qntdFibrasPredio) / 12 * qntdPredios * backboneAndar;
-        terminadorOpt8fibras = (numeroPavimentos - 1) * qntdFibras / 8 * qntdPredios * backboneAndar;
+        terminadorOpt8fibras = (numeroPavimentos - 1) * qntdFibras / 8 * backboneAndar;
 
         contador = qntdFibras * (numeroPavimentos - 1);
         contador -= 24;
@@ -125,7 +125,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
         fibraOpticaMetros = Math.ceil(fibraOpticaMetros);
         quantidadeDio = Math.ceil(quantidadeDio);
         bandejaEmenda = Math.ceil(bandejaEmenda);
-        terminadorOpt8fibras = Math.ceil(terminadorOpt8fibras);
+        terminadorOpt8fibras = Math.ceil(terminadorOpt8fibras) * qntdPredios;
 
         qntdAcopladorOptSM = Math.ceil(qntdAcopladorOptSM);
         qntdAcopladorOptMM = Math.ceil(qntdAcopladorOptMM);
