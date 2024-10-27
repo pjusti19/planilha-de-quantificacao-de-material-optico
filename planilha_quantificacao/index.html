@@ -27,8 +27,16 @@
                 <input type="number" id="numero_pavimentos" name="numero_pavimentos">
             </div>
             <div class="input-group">
-                <label for="pares_fibras_disponiveis">Número de pares de fibras disponíveis:</label>
-                <input type="number" id="pares_fibras_disponiveis" name="pares_fibras_disponiveis">
+                <label for="qntd_fibras_disponiveis">Número de fibras disponíveis:</label>
+                <input type="number" id="qntd_fibras_disponiveis" name="qntd_fibras_disponiveis">
+            </div>
+            <div class="input-group"></div>
+                <label for="qntd_predios">Número de prédios:</label>
+                <input type="number" id="qntd_predios" name="qntd_predios">
+            </div>
+            <div class="input-group"></div>
+                <label for="distancia">Distância média entre o prédio principal e o(s) prédio(s) secundário(s):</label>
+                <input type="number" id="distancia" name="distancia">
             </div>
             <div class="input-group">
                 <label for="medida_basica">Medida básica p/ cálculo dos lances do backbone:</label>
@@ -41,10 +49,6 @@
                     <option value="multimodo">multimodo</option>
                     <option value="monomodo">monomodo</option>
                 </select>
-            </div>
-            <div class="input-group">
-                <label for="caracteristica">Característica da fibra óptica:</label>
-                <input type="text" id="caracteristica" name="caracteristica">
             </div>
             <div class="input-group">
                 <label for="tipoFibraPredio">Tipo de fibra que chegará:</label>
@@ -75,8 +79,6 @@
 
         </article>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-    <script src="script.js"></script>
     <footer>
         <ul>
             <li>Devs:</li>
@@ -86,6 +88,8 @@
         </ul>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
