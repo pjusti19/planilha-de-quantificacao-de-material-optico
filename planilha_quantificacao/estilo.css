@@ -56,6 +56,15 @@ main {
     margin-bottom: 3%;
 }
 
+#retorno {
+    gap: 1em;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: larger;
+    font-weight: bold;
+}
+
+
 .input-group {
     display: flex;
     align-items: center;
@@ -105,6 +114,16 @@ footer ul {
     padding: 0;
     margin: 0;
     width: 100%; 
+}
+#resultados tr{
+    line-height: 1.5;  
+    font-size: larger;
+}
+#resultados th{
+    font-weight: unset;
+}
+#primeiralinha{
+ font-weight: bold;
 }
 
 footer ul li a {

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let botao = document.getElementById('botao');
 
     function atualizarVisibilidade() {
+
         inputs_primarios.classList.toggle('hidden', !(backbonePrimario.checked || backboneSecundario.checked));
         
         inputs_secundarios.classList.toggle('hidden', !backboneSecundario.checked);

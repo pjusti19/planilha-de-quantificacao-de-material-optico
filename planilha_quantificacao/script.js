@@ -180,7 +180,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
     console.log("qntdPigTailMMDuplo:", qntdPigTailMMDuplo);
     // redireciona os valores pra outra pagina
        
-    window.location.href = `resultado.html?numero_pavimentos=${numeroPavimentos}&pares_fibras=${qntdFibras}&medida_basica=${medidaBasica}
+    window.location.href = `resultado.html?numero_pavimentos=${numeroPavimentos}&pares_fibras=${qntdFibras}&comprimentoFibra=${comprimentoFibra}&medida_basica=${medidaBasica}
     &especificacao=${especificacao}&backbone_andar=${backboneAndar}&backbone_primario=${backbonePrimario}
     &backbone_secundario=${backboneSecundario}&fibraOpticaMetros=${fibraOpticaMetros}&quantidadeDio=${quantidadeDio}&bandejaEmenda=${bandejaEmenda}
     &terminadorOpt8fibras=${terminadorOpt8fibras}&qntdAcopladorOptSM=${qntdAcopladorOptSM}
