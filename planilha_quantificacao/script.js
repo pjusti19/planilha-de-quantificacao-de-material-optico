@@ -48,7 +48,7 @@ document.getElementById('Calculo').addEventListener('click', function () {
 
         quantidadeDio = (numeroPavimentos - 1) * qntdFibras * backboneAndar;
         quantidadeDio /= 24;
-        bandejaEmenda = (numeroPavimentos - 1) * qntdFibras / 12;
+        bandejaEmenda = (numeroPavimentos - 1) * qntdFibras / 12 * backboneAndar;
         terminadorOpt8fibras = (numeroPavimentos - 1) * qntdFibras / 8 * backboneAndar;
 
         fibraOpticaMetros = fibraOpticaMetros * 1.2 * backboneAndar;
